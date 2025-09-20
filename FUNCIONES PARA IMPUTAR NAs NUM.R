@@ -1,5 +1,4 @@
 
-
 minmax <- function(x, y) {
   resul1 = x - y
   resul2 = x + y
@@ -9,15 +8,14 @@ minmax <- function(x, y) {
 }
 
 # La función arreglo_variable se vectoriza.
-arreglo_variable_opt <- function(f) {
-  # Calculamos la media y la desviación estándar una sola vez.
+imp_nas <- function(f) {
+  # Calculamos la media y la desviación estándar.
   media <- round(mean(f, na.rm = TRUE), 0)
   desviacion_estandar <- round(sd(f, na.rm = TRUE), 0)
   
   mn_sd <- minmax(x = media, y = desviacion_estandar)
   
   # Generamos un vector de valores aleatorios del mismo tamaño que f.
-  # El bucle for desaparece.
   aleatorios <- sample(mn_sd$min:mn_sd$max, size = length(f), replace = TRUE)
   
   # Imputamos solo donde hay NAs, usando una máscara lógica.
@@ -32,5 +30,3 @@ arreglo_variable_opt <- function(f) {
   
   return(f_imputado)
 }
-
-# 1
